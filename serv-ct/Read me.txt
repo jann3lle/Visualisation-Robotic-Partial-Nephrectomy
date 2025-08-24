@@ -1,0 +1,54 @@
+Dataset Description
+--------------------
+Stereo-endoscopic reconstruction validation dataset. Details of each folder are as follows:
+
+The dataset is split into two experiments in folders Experiment_1 and Experiment_2. These correspond to two separate ex vivo porcine datasets, the first imaged with a 30 degrere endoscope, the second with a straight endoscope.
+
+Within each Experiment folder we have:
+
+Left_rectified - left rectified images (720x576 24-bit colour PNG)
+Right_rectified = right rectified images (720x576 24-bit colour PNG)
+Rectified_calibration - JSON calibration files containing P1, P2 and Q (copies for each image but the same for all images in one experiment)
+Reference_CT - The reference data using an O-arm CT scan
+Reference_RGB - The reference data using a Creaform RGB scan (Experiment_2 only)
+
+All reference data directories contain:
+DepthL - Left image depth maps (mm depth for each pixel scaled by 256 and stored as 16 bit PNG)
+DepthR - Right image depth maps (mm depth for each pixel scaled by 256 and stored as 16 bit PNG)
+Disparity - Left-to-right disparity (pixel disparity scaled by 256 for subpixel accuracy and stored as 16 bit PNG)
+OcclusionL - Colour coded occlusion images (Yellow - non overlap, blue - outside the reference surface, red - not visible in the right image) 
+OcclusionR - Colour coded occlusion images (Yellow - non overlap, blue - outside the reference surface, green - not visible in the left image)
+Other - Some diagnostic images as well as the final manual registration matrix for each image pair
+
+In addition to the validation data, we also provide the following directories:
+
+Creaform - An RGB surface model of the from the Creaform GO SCAN20
+CT - A directory for each image containing the endoscope and anatomical surfaces derived from CT and initial registration data 
+scripts - Python scripts to run the manual alignment (some editing is required to provide the root directory and select the image)
+
+License
+--------
+The SERV-CT Dataset and associated software is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0).
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+Reference
+----------
+We request to cite the following publication whenever research making use of this dataset is reported in any academic publication or research report:
+
+@article{edwards2020serv-ct,
+title={ SERV-CT: A disparity dataset from CT for validation of endoscopic 3D reconstruction},
+author={Edwards, PJ “Eddie” and Psychogyios, Dimitris and Stoyanov, Danail},
+booktitle={Medical Image Analysis},
+year={In Submission}
+}
+
+The following publication is also associated with this work:
+
+Stoyanov, D., Scarzanella, M.V., Pratt, P., Yang, G.Z., 2010. Real-time stereo reconstruction in robotically assisted minimally invasive surgery, in: International Conference on Medical Image Computing and Computer-Assisted Intervention, Springer. pp. 275–282 
+
+Contact
+-------
+For comments, suggestions or feedback, or if you experience any problems with this website or the dataset, please contact Eddie Edwards (eddie.edwards@ucl.ac.uk) or Dimitris Psychogyios (dimitris.psychogyios.19@ucl.ac.uk).
+
+

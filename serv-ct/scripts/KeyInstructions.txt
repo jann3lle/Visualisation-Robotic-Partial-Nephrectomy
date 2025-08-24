@@ -1,0 +1,39 @@
+Amend the script: 
+
+CORRECT ORDER:
+	Use arrow keys to get the alignment close first (use edge image and stereo rendering)
+	Then use the scroll wheel (or drag up/down) to get the right depth (use the difference image)
+	Use CTRL for refinement of the registration
+	'Q' key when finished will produce texture mapped surface
+	Another 'Q' will quit the program
+
+Keyboard and mouse Bindings:
+   MOTION::
+	Arrow keys (Rotation about the left camera is similar to translation about the other axis):
+		Left: Y rotate left
+		Right: Y rotate right
+		Up: X rotate up
+		Down: X rotate down
+
+	A: Z rotate anti-clockwise
+	S: Z rotate clockwise
+
+	SHIFT: Do large movements (default)
+	CTRL: Do fine movements
+
+   APPEARANCE:
+	O: Toggle on off for rendering
+	P: Point representation
+	L: Line representation
+	K: Solid representation (default)
+	I: Show edges (renders triangles - useful in transparent modes)
+	+: Increase opacity
+	-: Reduce opacity
+  
+   MOUSE SCROLL: Move forward or away along Z-axis
+   MOUSE CLICK-AND-DRAG: Rotate the object (MOVES AWAY FROM CT ENDOSCOPE POSITION - DO NOT USE)
+
+   IF A WINDOW POPS UP WITH A VTK ERROR THEN JUST QUIT THAT WINDOW
+	
+   Quit (when finished): 'Q'
+
