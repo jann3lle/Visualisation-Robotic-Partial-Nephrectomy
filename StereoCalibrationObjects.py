@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 from os import path, makedirs
 import sys
+import json
 ### Classes to store and retrieve stereo calibrations
 
 class Mono_calibration(object):
@@ -11,6 +12,8 @@ class Mono_calibration(object):
         self.dist_coeffs = dist_coeffs
 
 class Stereo_calibration(object):
+    print("Loaded StereoCalibrationObjects from:", __file__)
+
     def __init__(self, camera1: Mono_calibration=None, camera2: Mono_calibration=None, R=None, T=None, E=None, F=None):
         self.camera1 = camera1
         self.camera2 = camera2
@@ -20,9 +23,6 @@ class Stereo_calibration(object):
         self.F = F
 
     def load_from_json(self, filename):
-        import json
-        import numpy as np
-
         print(f"Loading calibration from JSON: {filename}")
 
         self.camera1 = Mono_calibration()
@@ -31,16 +31,16 @@ class Stereo_calibration(object):
         with open(filename, "r") as f:
             data = json.load(f)
 
-        # match whatever you saved in save_calib_params_json()
-        self.camera1.camera_matrix = np.array(data["left_camera_matrix"])
-        self.camera1.dist_coeffs   = np.array(data["left_dist_coeffs"])
-        self.camera2.camera_matrix = np.array(data["right_camera_matrix"])
-        self.camera2.dist_coeffs   = np.array(data["right_dist_coeffs"])
-        self.R = np.array(data["left_to_right_r"])
-        self.T = np.array(data["left_to_right_t"])
-        self.E = np.array(data["essential_matrix"])
-        self.F = np.array(data["fundamental_matrix"])
-        
+        # adjust these keys depending on how you saved
+        self.camera1.camera_matrix = np.array(data["K1"])
+        self.camera1.dist_coeffs   = np.array(data["D1"])
+        self.camera2.camera_matrix = np.array(data["K2"])
+        self.camera2.dist_coeffs   = np.array(data["D2"])
+        self.R = np.array(data["R"])
+        self.T = np.array(data["T"])
+        self.E = np.array(data["E"])
+        self.F = np.array(data["F"])
+
     def load_from_file(self, filename):
         cal_ext = path.splitext(path.basename(filename))[1]
         print("Calibration extension = {}".format(cal_ext))
