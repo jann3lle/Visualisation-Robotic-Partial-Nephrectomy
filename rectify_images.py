@@ -33,7 +33,12 @@ P1 = np.zeros(shape=(3, 4))
 P2 = np.zeros(shape=(3, 4))
 Q = np.zeros(shape=(4, 4))
 stereo_calib = StereoCalibrationObjects.Stereo_calibration()
-stereo_calib.load_from_file(args.calib)
+
+if args.calib.endswith(".json"):
+    stereo_calib.load_from_json(args.calib)
+else:
+    stereo_calib.load_from_file(args.calib)
+
 # Check the image dimensions
 left_imfile = path.join(args.left_dir, left_filenames[0])
 L_image = cv2.imread(left_imfile)
