@@ -19,6 +19,28 @@ class Stereo_calibration(object):
         self.E = E
         self.F = F
 
+    def load_from_json(self, filename):
+        import json
+        import numpy as np
+
+        print(f"Loading calibration from JSON: {filename}")
+
+        self.camera1 = Mono_calibration()
+        self.camera2 = Mono_calibration()
+
+        with open(filename, "r") as f:
+            data = json.load(f)
+
+        # match whatever you saved in save_calib_params_json()
+        self.camera1.camera_matrix = np.array(data["left_camera_matrix"])
+        self.camera1.dist_coeffs   = np.array(data["left_dist_coeffs"])
+        self.camera2.camera_matrix = np.array(data["right_camera_matrix"])
+        self.camera2.dist_coeffs   = np.array(data["right_dist_coeffs"])
+        self.R = np.array(data["left_to_right_r"])
+        self.T = np.array(data["left_to_right_t"])
+        self.E = np.array(data["essential_matrix"])
+        self.F = np.array(data["fundamental_matrix"])
+        
     def load_from_file(self, filename):
         cal_ext = path.splitext(path.basename(filename))[1]
         print("Calibration extension = {}".format(cal_ext))
