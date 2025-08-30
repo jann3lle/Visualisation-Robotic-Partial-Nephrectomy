@@ -285,7 +285,7 @@ if __name__ == "__main__":
     from sksurgeryvtk.widgets.vtk_overlay_window import VTKOverlayWindow
     
     # -- -- Config ----
-    img_path_no = 9
+    img_path_no = 0
     valid_frame_indices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 18, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 37, 38, 39, 42, 43, 44, 45, 47, 48, 49]
     
     try:
@@ -294,8 +294,9 @@ if __name__ == "__main__":
     except NameError:
         base_dir = Path.cwd()
     
-    left_img_dir = base_dir / 'data' / 'img_dir' / 'Frames_Left'
-    results_folder = base_dir / 'data' / 'results' / 'calibrator_new_params'
+    #left_img_dir = base_dir / 'data' / 'img_dir' / 'Frames_Left'
+    left_img_dir = base_dir / 'data' / 'results' / 'rectified_imgs' / 'Left'
+    results_folder = base_dir / 'data' / 'results' / 'calibrator_params'
     calibration_json_path = results_folder / "stereo_calibration_params_new.json"
 
     

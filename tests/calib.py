@@ -209,7 +209,7 @@ if __name__ == "__main__":
     left_img_dir = base_dir / 'data' / 'img_dir' / 'Frames_Left'
     right_img_dir = base_dir / 'data' / 'img_dir' / 'Frames_Right'
     
-    results_folder = base_dir / 'data' / 'results' / 'calibrator_new_params'
+    results_folder = base_dir / 'data' / 'results' / 'calibrator_params'
     filename = results_folder / "stereo_calibration_params_new.json"
 
     main()
