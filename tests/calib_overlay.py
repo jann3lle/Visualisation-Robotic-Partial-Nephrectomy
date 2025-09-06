@@ -214,7 +214,7 @@ def main(left_img_dir):
 
 if __name__ == "__main__":
     # ---- Configuration ----
-    img_path_no = 0
+    img_path_no = 9
 
     chessboard_rows = 12 # y-axis ; corresponding to the chessboard corners
     chessboard_columns = 17 # x-axis
@@ -229,10 +229,10 @@ if __name__ == "__main__":
     except NameError:
         base_dir = Path.cwd()
     
-    left_img_dir = base_dir/ 'data' / 'img_dir' / 'Frames_Left'
-
+    #left_img_dir = base_dir/ 'data' / 'img_dir' / 'Frames_Left'
+    left_img_dir = base_dir/ 'data' / 'results' / 'rectified_imgs'/ 'Left'
     # ---- Save parameters ----
-    results_folder = base_dir / 'data' / 'results' / 'calibrator_new_params'
+    results_folder = base_dir / 'data' / 'results' / 'calibrator_params'
     results_folder.mkdir(parents=True, exist_ok=True)
 
     # Define the JSON filename (change to your actual file name)

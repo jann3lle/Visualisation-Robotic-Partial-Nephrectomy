@@ -131,38 +131,6 @@ def create_charuco_board_vtk_model(num_x=19, num_y=26, square_size=5.0):
 
     return actor
 
-# def create_charuco_board_vtk_model(num_x=19, num_y=26, square_size=5.0):
-#     """
-#     Create a flat Charuco board in VTK with correct dimensions.
-#     The origin is at the top-left corner (like OpenCV Charuco).
-#     """
-#     append_filter = vtk.vtkAppendPolyData()
-
-#     for i in range(num_x):
-#         for j in range(num_y):
-#             square = vtk.vtkCubeSource()
-#             square.SetXLength(square_size)
-#             square.SetYLength(square_size)
-#             square.SetZLength(0.1)  # thinner board
-#             square.SetCenter(
-#                 i * square_size + square_size / 2,
-#                 j * square_size + square_size / 2,
-#                 0
-#             )
-#             square.Update()
-#             append_filter.AddInputData(square.GetOutput())
-
-#     append_filter.Update()
-
-#     mapper = vtk.vtkPolyDataMapper()
-#     mapper.SetInputData(append_filter.GetOutput())
-
-#     actor = vtk.vtkActor()
-#     actor.SetMapper(mapper)
-#     actor.GetProperty().SetColor(1, 1, 1)  # default white, can texture later
-
-#     return actor
-
 def rvec_tvec_to_vtk_transform(rvec, tvec):
     # Convert OpenCV rvec/tvec to REUSABLE vtkTransform
     R, _ = cv2.Rodrigues(rvec)
@@ -194,24 +162,16 @@ def show_chessboard_in_vtk(rvec, tvec, K, image):
 
     # ---- Create ChAruco board actor ----
     board_actor = create_charuco_board_vtk_model()
-    # board_actor.SetScale(3, 3, 1) 
-    # bounds = board_actor.GetBounds()
-    # print("Board bounds:", bounds)
 
     transform = rvec_tvec_to_vtk_transform(rvec, tvec)
-    #board_actor.SetUserTransform(transform)
+
 
     # ---- Create overlay window ----
     window = VTKOverlayWindow(camera_matrix = K, init_pose = False)
     window.GetRenderWindow().SetNumberOfLayers(5)
 
    # ---- Set the background image frame to layer 0 ----
-    # vtk_img = numpy_to_vtk_image_data(image)
-    # bg_actor = vtk.vtkImageActor()
-    # bg_actor.SetInputData(vtk_img)
-    # window.add_vtk_actor(bg_actor, layer=0)
     window.set_video_image(image)
-
 
     # ---- Get renderer and camera for layer 1
     renderer = window.get_renderer(layer = 1)
